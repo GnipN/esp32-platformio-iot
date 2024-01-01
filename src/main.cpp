@@ -3,7 +3,7 @@
 #include <PubSubClient.h>
 
 
-const char* ssid = "wifiname";
+const char* ssid = "wifianme";
 const char* password = "password";
 const char* mqtt_server = "192.168.243.251";
 
@@ -99,18 +99,12 @@ void reconnectWiFi() {
 
 // #include <Arduino.h>
 // #include <WiFi.h>
-// #include <PubSubClient.h>   // MQTT client
 
 // // put your WiFi credentials here
-// const char* ssid = "virus";
-// const char* password = "1234asdf";
-
-
-
-
+// const char* ssid = "wifianme";
+// const char* password = "password";
 
 // void reconnectWiFi();
-
 
 // void setup() {
 //   // put your setup code here, to run once:
