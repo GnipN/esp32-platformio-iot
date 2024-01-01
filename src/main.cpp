@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
+#include <HTTPClient.h> // for connect to web service
+#include <ArduinoJson.h> // for parse JSON
 
 // put your WiFi credentials here
 const char* ssid = "wifiname";
@@ -23,6 +25,43 @@ void setup() {
   digitalWrite(LED_BUILTIN, HIGH);
   Serial.println("Connected to WiFi");
 
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+    HTTPClient http;  //Declare an object of class HTTPClient
+
+    http.begin("http://192.168.243.251:3000/login");  //Specify request destination
+    http.addHeader("Content-Type", "application/json");  //Specify content-type header
+
+    // Prepare your JSON payload
+    String payload = "{\"username\":\"usr\", \"password\":\"pass\"}";
+
+    int httpCode = http.POST(payload);   //Send the request
+    String response = http.getString();                  //Get the response payload
+
+    Serial.println(httpCode);   //Print HTTP return code
+    Serial.println(response);    //Print request response payload
+
+    DynamicJsonDocument doc(1024);
+    deserializeJson(doc, response);
+    String token = doc["token"].as<String>();
+
+    Serial.println(token); 
+
+    // request with token
+    http.begin("http://192.168.243.251:3000/protected");  //Specify request destination
+    http.addHeader("Authorization", "Bearer " + token);  //Add Authorization header
+
+    httpCode = http.GET();   //Send the request
+    response = http.getString();                  //Get the response payload
+
+    Serial.println(httpCode);   //Print HTTP return code
+    Serial.println(response);    //Print request response payload
+
+
+    http.end();  //Close connection
+  } else {
+    Serial.println("Error in WiFi connection");
+  }
+
 }
 
 void loop() {
@@ -33,8 +72,8 @@ void loop() {
 
   // read the input on analog pin 0:
   int sensorValue = analogRead(A0); // read analog input pin 0
-  Serial.print(sensorValue, DEC); // prints the value read
-  Serial.print(" \n"); // prints a space between the numbers
+  // Serial.print(sensorValue, DEC); // prints the value read
+  // Serial.print(" \n"); // prints a space between the numbers
   delay(1000); // wait 100ms for next reading
 }
 
