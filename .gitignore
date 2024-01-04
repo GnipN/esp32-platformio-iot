@@ -4,3 +4,5 @@
 .vscode/launch.json
 .vscode/ipch
 .mosquitto/data/*
+.mosquitto/data/mosquitto.db
+.vscode/extensions.json
