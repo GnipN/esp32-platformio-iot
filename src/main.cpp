@@ -6,6 +6,8 @@
 // put your WiFi credentials here
 const char* ssid = "wifiname";
 const char* password = "password";
+String token;
+String web_service_protocal_ip_port = "http://192.168.243.251:3000";
 
 void reconnectWiFi();
 
@@ -28,11 +30,11 @@ void setup() {
   if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
     HTTPClient http;  //Declare an object of class HTTPClient
 
-    http.begin("http://192.168.243.251:3000/login");  //Specify request destination
+    http.begin(web_service_protocal_ip_port+"/login");  //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
 
     // Prepare your JSON payload
-    String payload = "{\"username\":\"usr\", \"password\":\"pass\"}";
+    String payload = "{\"usr\":\"usr\", \"pass\":\"pass\"}";
 
     int httpCode = http.POST(payload);   //Send the request
     String response = http.getString();                  //Get the response payload
@@ -42,12 +44,12 @@ void setup() {
 
     DynamicJsonDocument doc(1024);
     deserializeJson(doc, response);
-    String token = doc["token"].as<String>();
+    token = doc["token"].as<String>();
 
     Serial.println(token); 
 
     // request with token
-    http.begin("http://192.168.243.251:3000/protected");  //Specify request destination
+    http.begin(web_service_protocal_ip_port+"/protected");  //Specify request destination
     http.addHeader("Authorization", "Bearer " + token);  //Add Authorization header
 
     httpCode = http.GET();   //Send the request
