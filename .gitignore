@@ -3,6 +3,6 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-.mosquitto/data/*
-.mosquitto/data/mosquitto.db
 .vscode/extensions.json
+mosquitto/data/*
+mosquitto/mosquitto.log
