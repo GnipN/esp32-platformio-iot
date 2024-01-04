@@ -10,6 +10,7 @@ String token;
 String web_service_protocal_ip_port = "http://192.168.243.251:3000";
 
 void reconnectWiFi();
+void sendSensorValue(String sens_id, int sens_val);
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,8 +30,9 @@ void setup() {
 
   if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
     HTTPClient http;  //Declare an object of class HTTPClient
-
-    http.begin(web_service_protocal_ip_port+"/login");  //Specify request destination
+    
+    Serial.println("connect to web service");
+    http.begin(web_service_protocal_ip_port + "/login");  //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
 
     // Prepare your JSON payload
@@ -39,6 +41,7 @@ void setup() {
     int httpCode = http.POST(payload);   //Send the request
     String response = http.getString();                  //Get the response payload
 
+    Serial.println("web service return");
     Serial.println(httpCode);   //Print HTTP return code
     Serial.println(response);    //Print request response payload
 
@@ -49,7 +52,7 @@ void setup() {
     Serial.println(token); 
 
     // request with token
-    http.begin(web_service_protocal_ip_port+"/protected");  //Specify request destination
+    http.begin(web_service_protocal_ip_port + "/protected");  //Specify request destination
     http.addHeader("Authorization", "Bearer " + token);  //Add Authorization header
 
     httpCode = http.GET();   //Send the request
@@ -66,6 +69,8 @@ void setup() {
 
 }
 
+
+
 void loop() {
   // put your main code here, to run repeatedly:
    if (WiFi.status() != WL_CONNECTED) {  
@@ -74,6 +79,7 @@ void loop() {
 
   // read the input on analog pin 0:
   int sensorValue = analogRead(A0); // read analog input pin 0
+  sendSensorValue("LDR01", sensorValue);
   // Serial.print(sensorValue, DEC); // prints the value read
   // Serial.print(" \n"); // prints a space between the numbers
   delay(1000); // wait 100ms for next reading
@@ -91,6 +97,33 @@ void reconnectWiFi() {
     // set LED to indicate successful connection
   digitalWrite(LED_BUILTIN, HIGH);  
     Serial.println("Connected!");
+}
+
+void sendSensorValue(String sens_id, int sens_val) {
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+    HTTPClient http;  //Declare an object of class HTTPClient
+
+    http.begin(web_service_protocal_ip_port + "/sensVal");  //Specify request destination
+    http.addHeader("Content-Type", "application/json");  //Specify content-type header
+
+    // Prepare your JSON payload
+    DynamicJsonDocument doc(1024);
+    doc["token"] = token;
+    doc["sens_id"] = sens_id;
+    doc["sens_val"] = sens_val;
+    String payload;
+    serializeJson(doc, payload);
+
+    int httpCode = http.POST(payload);   //Send the request
+    String response = http.getString();  //Get the response payload
+
+    Serial.println(httpCode);   //Print HTTP return code
+    Serial.println(response);   //Print request response payload
+
+    http.end();  //Close connection
+  } else {
+    Serial.println("Error in WiFi connection");
+  }
 }
 
 // #include <Arduino.h>
