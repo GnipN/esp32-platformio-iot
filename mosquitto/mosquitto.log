@@ -247,3 +247,96 @@
 1704111415: Client mqttx_629d7a72 closed its connection.
 1704111421: mosquitto version 2.0.18 terminating
 1704111421: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704446448: mosquitto version 2.0.18 starting
+1704446448: Config loaded from /mosquitto/config/mosquitto.conf.
+1704446448: Opening ipv4 listen socket on port 1883.
+1704446448: Opening ipv6 listen socket on port 1883.
+1704446448: Opening websockets listen socket on port 9001.
+1704446448: mosquitto version 2.0.18 running
+1704446857: New client connected from ::ffff:172.18.0.1:43866 as flutter_client (p1, c1, k20).
+1704446896: Client flutter_client closed its connection.
+1704448249: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704448850: New client connected from ::ffff:172.18.0.1:36254 as flutter_client (p1, c1, k20).
+1704448947: New client connected from ::ffff:172.18.0.1:44362 as mqttx_93316750 (p5, c1, k60).
+1704449068: Client flutter_client already connected, closing old connection.
+1704449068: New client connected from ::ffff:172.18.0.1:44698 as flutter_client (p1, c1, k20).
+1704449068: Client flutter_client closed its connection.
+1704449118: Client flutter_client closed its connection.
+1704449802: New client connected from ::ffff:172.18.0.1:54808 as flutter_client (p1, c1, k20).
+1704449873: Client flutter_client already connected, closing old connection.
+1704449873: New client connected from ::ffff:172.18.0.1:57666 as flutter_client (p1, c1, k20).
+1704449873: Client flutter_client closed its connection.
+1704449976: Client mqttx_93316750 closed its connection.
+1704449980: New client connected from ::ffff:172.18.0.1:49740 as mqttx_93316750 (p5, c1, k60).
+1704450050: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704450144: Client flutter_client closed its connection.
+1704450230: New client connected from ::ffff:172.18.0.1:49790 as flutter_client (p1, c1, k20).
+1704450281: Client flutter_client already connected, closing old connection.
+1704450281: New client connected from ::ffff:172.18.0.1:43190 as flutter_client (p1, c1, k20).
+1704450281: Client flutter_client closed its connection.
+1704450336: Client flutter_client closed its connection.
+1704450444: Client mqttx_93316750 closed its connection.
+1704450448: New client connected from ::ffff:172.18.0.1:53058 as mqttx_93316750 (p5, c1, k60).
+1704450536: New client connected from ::ffff:172.18.0.1:56924 as flutter_client (p1, c1, k20).
+1704450630: Client flutter_client closed its connection.
+1704450814: New client connected from ::ffff:172.18.0.1:56288 as flutter_client (p1, c1, k20).
+1704450965: Client flutter_client already connected, closing old connection.
+1704450965: New client connected from ::ffff:172.18.0.1:60544 as flutter_client (p1, c1, k20).
+1704450965: Client flutter_client closed its connection.
+1704451044: Client mqttx_93316750 closed its connection.
+1704451048: New client connected from ::ffff:172.18.0.1:37142 as mqttx_93316750 (p5, c1, k60).
+1704451360: Client flutter_client already connected, closing old connection.
+1704451360: New client connected from ::ffff:172.18.0.1:34140 as flutter_client (p1, c1, k20).
+1704451360: Client flutter_client closed its connection.
+1704451524: Client mqttx_93316750 closed its connection.
+1704451528: New client connected from ::ffff:172.18.0.1:38830 as mqttx_93316750 (p5, c1, k60).
+1704451582: Client flutter_client already connected, closing old connection.
+1704451582: New client connected from ::ffff:172.18.0.1:52716 as flutter_client (p1, c1, k20).
+1704451582: Client flutter_client closed its connection.
+1704451728: Client flutter_client already connected, closing old connection.
+1704451728: New client connected from ::ffff:172.18.0.1:34008 as flutter_client (p1, c1, k20).
+1704451728: Client flutter_client closed its connection.
+1704451851: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704452004: Client mqttx_93316750 closed its connection.
+1704452008: New client connected from ::ffff:172.18.0.1:53146 as mqttx_93316750 (p5, c1, k60).
+1704452230: Client flutter_client already connected, closing old connection.
+1704452230: New client connected from ::ffff:172.18.0.1:33492 as flutter_client (p1, c1, k20).
+1704452230: Client flutter_client closed its connection.
+1704452329: Client flutter_client already connected, closing old connection.
+1704452329: New client connected from ::ffff:172.18.0.1:57130 as flutter_client (p1, c1, k20).
+1704452329: Client flutter_client closed its connection.
+1704452338: Client flutter_client already connected, closing old connection.
+1704452338: New client connected from ::ffff:172.18.0.1:57140 as flutter_client (p1, c1, k20).
+1704452338: Client flutter_client closed its connection.
+1704452484: Client mqttx_93316750 closed its connection.
+1704452488: New client connected from ::ffff:172.18.0.1:50226 as mqttx_93316750 (p5, c1, k60).
+1704452904: Client mqttx_93316750 closed its connection.
+1704452908: New client connected from ::ffff:172.18.0.1:44130 as mqttx_93316750 (p5, c1, k60).
+1704453432: Client flutter_client closed its connection.
+1704453522: New client connected from ::ffff:172.18.0.1:40406 as flutter_client (p1, c1, k20).
+1704453586: Client flutter_client already connected, closing old connection.
+1704453586: New client connected from ::ffff:172.18.0.1:41108 as flutter_client (p1, c1, k20).
+1704453586: Client flutter_client closed its connection.
+1704453652: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704453744: Client mqttx_93316750 closed its connection.
+1704453748: New client connected from ::ffff:172.18.0.1:59618 as mqttx_93316750 (p5, c1, k60).
+1704454224: Client mqttx_93316750 closed its connection.
+1704454228: New client connected from ::ffff:172.18.0.1:57966 as mqttx_93316750 (p5, c1, k60).
+1704454704: Client mqttx_93316750 closed its connection.
+1704454708: New client connected from ::ffff:172.18.0.1:40630 as mqttx_93316750 (p5, c1, k60).
+1704454878: Client flutter_client closed its connection.
+1704454910: New client connected from ::ffff:172.18.0.1:59342 as flutter_client (p1, c1, k20).
+1704455184: Client mqttx_93316750 closed its connection.
+1704455188: New client connected from ::ffff:172.18.0.1:45846 as mqttx_93316750 (p5, c1, k60).
+1704455424: Client flutter_client closed its connection.
+1704455453: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704455664: Client mqttx_93316750 closed its connection.
+1704455668: New client connected from ::ffff:172.18.0.1:33454 as mqttx_93316750 (p5, c1, k60).
+1704455760: Client mqttx_93316750 closed its connection.
+1704457254: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704458049: New client connected from ::ffff:172.18.0.1:52886 as flutter_client (p1, c1, k20).
+1704458187: Client flutter_client closed its connection.
+1704459055: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704460856: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1704461016: mosquitto version 2.0.18 terminating
+1704461016: Saving in-memory database to /mosquitto/data//mosquitto.db.
