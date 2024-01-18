@@ -3,9 +3,10 @@
 #include <PubSubClient.h>
 
 
-const char* ssid = "wifianme";
-const char* password = "password";
-const char* mqtt_server = "192.168.243.251";
+
+const char* ssid = "virus";
+const char* password = "1234asdf";
+const char* mqtt_server = "192.168.215.251";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
@@ -14,6 +15,7 @@ WiFiClient wifiClient;
 PubSubClient mqtt(wifiClient);
 
 long lastMsg = 0;
+String lastLEDstatus = "OFF";
 
 void setup() {
   Serial.begin(9600);
@@ -31,14 +33,28 @@ void setup() {
 
   mqtt.setServer(mqtt_server, 1883);
   mqtt.setCallback(callback);
+
+  pinMode(GPIO_NUM_9, OUTPUT);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("] ");
+  String topicStr = String(topic); // Convert char* to String
+  String payLoadStr; // Convert byte* to String
   for (int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
+    payLoadStr += (char)payload[i];
+  }
+  Serial.print("Message arrived [");
+  Serial.print(topicStr);
+  Serial.print("] ");
+  Serial.println(payLoadStr);
+
+  if( topicStr == "LED" ) {
+    lastLEDstatus = payLoadStr;
+    if (lastLEDstatus == "ON") {
+      digitalWrite(GPIO_NUM_9, HIGH);
+    }else if (lastLEDstatus == "OFF"){
+      digitalWrite(GPIO_NUM_9, LOW);
+    }
   }
   Serial.println();
 }
@@ -51,7 +67,7 @@ void reconnect() {
     if (mqtt.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
       mqtt.subscribe("myTopic");
-      mqtt.subscribe("myTopic2");
+      mqtt.subscribe("LED");
     } else {
       Serial.print("Failed to connect, rc=");
       Serial.print(mqtt.state());
@@ -77,6 +93,8 @@ void loop() {
     lastMsg = now;
     mqtt.publish("myTopic", "Hello from ESP32");
   }
+
+  
 }
 }
 
