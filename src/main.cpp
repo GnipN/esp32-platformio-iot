@@ -50,8 +50,8 @@ void reconnect() {
     }else{
     if (mqtt.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
-      mqtt.subscribe("myTopic");
-      mqtt.subscribe("myTopic2");
+      mqtt.subscribe("mqttXTopic");
+      mqtt.subscribe("myESP32Topic");
     } else {
       Serial.print("Failed to connect, rc=");
       Serial.print(mqtt.state());
