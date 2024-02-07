@@ -6,7 +6,7 @@
 
 const char* ssid = "virus";
 const char* password = "1234asdf";
-const char* mqtt_server = "192.168.215.251";
+const char* mqtt_server = "192.168.0.251";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
@@ -50,9 +50,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   if( topicStr == "LED" ) {
     lastLEDstatus = payLoadStr;
-    if (lastLEDstatus == "ON") {
+    if (lastLEDstatus == "1") {
       digitalWrite(GPIO_NUM_9, HIGH);
-    }else if (lastLEDstatus == "OFF"){
+    }else if (lastLEDstatus == "0"){
       digitalWrite(GPIO_NUM_9, LOW);
     }
   }
