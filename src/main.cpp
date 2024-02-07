@@ -3,9 +3,9 @@
 #include <PubSubClient.h>
 
 
-const char* ssid = "wifianme";
-const char* password = "password";
-const char* mqtt_server = "192.168.243.251";
+const char* ssid = "virus";
+const char* password = "1234asdf";
+const char* mqtt_server = "192.168.0.251";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
@@ -75,7 +75,7 @@ void loop() {
   long now = millis();
   if (now - lastMsg > 5000) {
     lastMsg = now;
-    mqtt.publish("myTopic", "Hello from ESP32");
+    mqtt.publish("myESP32Topic", "Hello from ESP32");
   }
 }
 }
