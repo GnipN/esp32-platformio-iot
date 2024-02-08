@@ -340,3 +340,59 @@
 1704460856: Saving in-memory database to /mosquitto/data//mosquitto.db.
 1704461016: mosquitto version 2.0.18 terminating
 1704461016: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707370767: mosquitto version 2.0.18 starting
+1707370767: Config loaded from /mosquitto/config/mosquitto.conf.
+1707370767: Opening ipv4 listen socket on port 1883.
+1707370767: Opening ipv6 listen socket on port 1883.
+1707370767: Opening websockets listen socket on port 9001.
+1707370767: mosquitto version 2.0.18 running
+1707371168: New connection from 172.18.0.1:41728 on port 1883.
+1707371168: New client connected from 172.18.0.1:41728 as ESP32Client (p2, c1, k15).
+1707371639: Client ESP32Client closed its connection.
+1707371639: New connection from 172.18.0.1:50558 on port 1883.
+1707371639: New client connected from 172.18.0.1:50558 as ESP32Client (p2, c1, k15).
+1707371672: Client ESP32Client has exceeded timeout, disconnecting.
+1707371888: mosquitto version 2.0.18 terminating
+1707371888: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707372856: mosquitto version 2.0.18 starting
+1707372856: Config loaded from /mosquitto/config/mosquitto.conf.
+1707372856: Opening ipv4 listen socket on port 1883.
+1707372856: Opening ipv6 listen socket on port 1883.
+1707372856: Opening websockets listen socket on port 9001.
+1707372856: mosquitto version 2.0.18 running
+1707372862: New client connected from ::ffff:172.18.0.1:49978 as flutter_client (p1, c1, k20).
+1707374657: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707375555: Client flutter_client closed its connection.
+1707377149: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707377149: New client connected from ::ffff:172.18.0.1:51652 as flutter_client (p1, c1, k20).
+1707378950: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707380751: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707382552: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707384353: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707384373: Client flutter_client already connected, closing old connection.
+1707384373: New client connected from ::ffff:172.18.0.1:46244 as flutter_client (p1, c1, k20).
+1707384373: Client flutter_client closed its connection.
+1707384465: Client flutter_client already connected, closing old connection.
+1707384465: New client connected from ::ffff:172.18.0.1:53530 as flutter_client (p1, c1, k20).
+1707384465: Client flutter_client closed its connection.
+1707385139: New client connected from ::ffff:172.18.0.1:36498 as flutter_client (p1, c1, k20).
+1707385139: Client flutter_client closed its connection.
+1707385211: Client flutter_client closed its connection.
+1707385374: New client connected from ::ffff:172.18.0.1:59898 as flutter_client (p1, c1, k20).
+1707385446: Client flutter_client disconnected.
+1707386154: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1707386256: New client connected from ::ffff:172.18.0.1:42808 as flutter_client (p1, c1, k20).
+1707386311: Client flutter_client closed its connection.
+1707386329: New client connected from ::ffff:172.18.0.1:33414 as flutter_client (p1, c1, k20).
+1707386806: New connection from 172.18.0.1:56370 on port 1883.
+1707386806: New client connected from 172.18.0.1:56370 as mqttx_898a1640 (p5, c1, k60).
+1707387221: Client mqttx_898a1640 has exceeded timeout, disconnecting.
+1707387226: New connection from 172.18.0.1:36102 on port 1883.
+1707387226: New client connected from 172.18.0.1:36102 as mqttx_898a1640 (p5, c1, k60).
+1707387301: Client flutter_client closed its connection.
+1707387326: New client connected from ::ffff:172.18.0.1:57466 as flutter_client (p1, c1, k20).
+1707387399: Client flutter_client disconnected.
+1707387400: New client connected from ::ffff:172.18.0.1:59958 as flutter_client (p1, c1, k20).
+1707387456: Client flutter_client already connected, closing old connection.
+1707387456: New client connected from ::ffff:172.18.0.1:42196 as flutter_client (p1, c1, k20).
+1707387456: Client flutter_client closed its connection.
