@@ -75,7 +75,9 @@ void loop() {
   long now = millis();
   if (now - lastMsg > 5000) {
     lastMsg = now;
-    mqtt.publish("myESP32Topic", "Hello from ESP32");
+    // read the input on analog pin 0:
+    int sensorValue = analogRead(A0); // read analog input pin 0
+    mqtt.publish("web", String(sensorValue).c_str());
   }
 }
 }
