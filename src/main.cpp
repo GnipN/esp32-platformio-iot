@@ -6,7 +6,7 @@
 
 const char* ssid = "virus";
 const char* password = "1234asdf";
-const char* mqtt_server = "192.168.0.251";
+const char* mqtt_server = "192.168.74.251";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
