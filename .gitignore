@@ -4,5 +4,8 @@
 .vscode/launch.json
 .vscode/ipch
 .vscode/extensions.json
-mosquitto/data/*
+mosquitto/data/
 mosquitto/mosquitto.log
+app/node_modules/
+app/package-lock.json
+mongodb/data/

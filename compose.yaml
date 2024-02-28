@@ -9,3 +9,31 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=adminDB
+      - MONGO_INITDB_ROOT_PASSWORD=passAdminDB
+      - MONGO_INITDB_DATABASE=iot
+    volumes:
+      - ./mongodb/data/db:/data/db
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+  app:
+    image: node:14
+    user: "node"
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+    command: bash -c "npm install && npm run start"
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+# volumes:
+#   mongodbdata:

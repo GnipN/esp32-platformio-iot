@@ -396,3 +396,107 @@
 1707387456: Client flutter_client already connected, closing old connection.
 1707387456: New client connected from ::ffff:172.18.0.1:42196 as flutter_client (p1, c1, k20).
 1707387456: Client flutter_client closed its connection.
+1709093412: mosquitto version 2.0.18 starting
+1709093412: Config loaded from /mosquitto/config/mosquitto.conf.
+1709093412: Opening ipv4 listen socket on port 1883.
+1709093412: Opening ipv6 listen socket on port 1883.
+1709093412: Opening websockets listen socket on port 9001.
+1709093412: mosquitto version 2.0.18 running
+1709093418: New connection from 172.18.0.1:40024 on port 1883.
+1709093418: New client connected from 172.18.0.1:40024 as ESP32Client (p2, c1, k15).
+1709093700: mosquitto version 2.0.18 terminating
+1709093700: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709093747: mosquitto version 2.0.18 starting
+1709093747: Config loaded from /mosquitto/config/mosquitto.conf.
+1709093747: Opening ipv4 listen socket on port 1883.
+1709093747: Opening ipv6 listen socket on port 1883.
+1709093747: Opening websockets listen socket on port 9001.
+1709093747: mosquitto version 2.0.18 running
+1709093747: New connection from 172.18.0.1:54410 on port 1883.
+1709093747: New client connected from 172.18.0.1:54410 as ESP32Client (p2, c1, k15).
+1709093810: mosquitto version 2.0.18 terminating
+1709093810: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709093847: mosquitto version 2.0.18 starting
+1709093847: Config loaded from /mosquitto/config/mosquitto.conf.
+1709093847: Opening ipv4 listen socket on port 1883.
+1709093847: Opening ipv6 listen socket on port 1883.
+1709093847: Opening websockets listen socket on port 9001.
+1709093847: mosquitto version 2.0.18 running
+1709093854: New connection from 172.19.0.1:40560 on port 1883.
+1709093854: New client connected from 172.19.0.1:40560 as ESP32Client (p2, c1, k15).
+1709094526: mosquitto version 2.0.18 terminating
+1709094526: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709094592: mosquitto version 2.0.18 starting
+1709094592: Config loaded from /mosquitto/config/mosquitto.conf.
+1709094592: Opening ipv4 listen socket on port 1883.
+1709094592: Opening ipv6 listen socket on port 1883.
+1709094592: Opening websockets listen socket on port 9001.
+1709094592: mosquitto version 2.0.18 running
+1709094594: New connection from 172.22.0.1:52808 on port 1883.
+1709094594: New client connected from 172.22.0.1:52808 as ESP32Client (p2, c1, k15).
+1709094698: mosquitto version 2.0.18 terminating
+1709094698: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709094732: mosquitto version 2.0.18 starting
+1709094732: Config loaded from /mosquitto/config/mosquitto.conf.
+1709094732: Opening ipv4 listen socket on port 1883.
+1709094732: Opening ipv6 listen socket on port 1883.
+1709094732: Opening websockets listen socket on port 9001.
+1709094732: mosquitto version 2.0.18 running
+1709094734: New connection from 172.23.0.1:56554 on port 1883.
+1709094734: New client connected from 172.23.0.1:56554 as ESP32Client (p2, c1, k15).
+1709094982: mosquitto version 2.0.18 terminating
+1709094982: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709095114: mosquitto version 2.0.18 starting
+1709095114: Config loaded from /mosquitto/config/mosquitto.conf.
+1709095114: Opening ipv4 listen socket on port 1883.
+1709095114: Opening ipv6 listen socket on port 1883.
+1709095114: Opening websockets listen socket on port 9001.
+1709095114: mosquitto version 2.0.18 running
+1709095115: New connection from 172.25.0.1:32914 on port 1883.
+1709095115: New client connected from 172.25.0.1:32914 as ESP32Client (p2, c1, k15).
+1709095414: mosquitto version 2.0.18 terminating
+1709095414: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709095433: mosquitto version 2.0.18 starting
+1709095433: Config loaded from /mosquitto/config/mosquitto.conf.
+1709095433: Opening ipv4 listen socket on port 1883.
+1709095433: Opening ipv6 listen socket on port 1883.
+1709095433: Opening websockets listen socket on port 9001.
+1709095433: mosquitto version 2.0.18 running
+1709095434: New connection from 172.26.0.1:42228 on port 1883.
+1709095434: New client connected from 172.26.0.1:42228 as ESP32Client (p2, c1, k15).
+1709095455: mosquitto version 2.0.18 terminating
+1709095455: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709095476: mosquitto version 2.0.18 starting
+1709095476: Config loaded from /mosquitto/config/mosquitto.conf.
+1709095476: Opening ipv4 listen socket on port 1883.
+1709095476: Opening ipv6 listen socket on port 1883.
+1709095476: Opening websockets listen socket on port 9001.
+1709095476: mosquitto version 2.0.18 running
+1709095478: New connection from 172.27.0.1:53166 on port 1883.
+1709095478: New client connected from 172.27.0.1:53166 as ESP32Client (p2, c1, k15).
+1709095636: mosquitto version 2.0.18 terminating
+1709095636: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709095746: mosquitto version 2.0.18 starting
+1709095746: Config loaded from /mosquitto/config/mosquitto.conf.
+1709095746: Opening ipv4 listen socket on port 1883.
+1709095746: Opening ipv6 listen socket on port 1883.
+1709095746: Opening websockets listen socket on port 9001.
+1709095746: mosquitto version 2.0.18 running
+1709095747: New connection from 172.28.0.1:43976 on port 1883.
+1709095747: New client connected from 172.28.0.1:43976 as ESP32Client (p2, c1, k15).
+1709096430: Client ESP32Client has exceeded timeout, disconnecting.
+1709101949: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709103750: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709105551: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709107352: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709109153: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709110954: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709112755: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709114556: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709116357: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709118158: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709119959: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709121760: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709123561: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1709124272: mosquitto version 2.0.18 terminating
+1709124272: Saving in-memory database to /mosquitto/data//mosquitto.db.
