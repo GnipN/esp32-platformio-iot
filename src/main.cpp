@@ -49,7 +49,7 @@ void setup() {
 
     DynamicJsonDocument doc(1024);
     deserializeJson(doc, response);
-    token = doc["token"].as<String>();
+    token = doc["iotToken"].as<String>();
 
     Serial.println(token); 
 

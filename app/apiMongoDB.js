@@ -29,6 +29,14 @@ const UserSchema = new Schema({
 });
 const User = mongoose.model('User', UserSchema);
 
+const sensValSchema = new Schema({
+  token: String,
+  sens_id: String,
+  sens_val: String,
+  created: { type: Date, default: Date.now }
+});
+const sensVal = mongoose.model('sensors_values', sensValSchema);
+
 // Step 5: Create Express routes to handle CRUD operations 
 // and use Mongoose to interact with the database 
 const express = require('express');
@@ -173,6 +181,24 @@ app.put('/users/:id', async (req, res) => {
 app.delete('/users/:id', async (req, res) => {
   await User.findByIdAndDelete(req.params.id);
   res.send('Deleted');
+});
+
+// Example route for creating a new sensor value
+app.post('/sensVal', async (req, res) => {
+  const { token, sens_id, sens_val } = req.body;
+
+  // Create a new sensor value
+  const newSensVal = new sensVal({
+    token: token,
+    sens_id: sens_id,
+    sens_val: sens_val
+  });
+
+  // Save the sensor value to the database
+  const result = await newSensVal.save();
+
+  // Send the result back to the client
+  res.json(result);
 });
 
 // Step 6: Export the Express app
