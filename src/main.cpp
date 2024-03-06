@@ -7,7 +7,7 @@
 const char* ssid = "virus";
 const char* password = "1234asdf";
 String token;
-String web_service_protocal_ip_port = "http://192.168.0.251:3000";
+String web_service_protocal_ip_port = "http://192.168.74.251:3000";
 
 void reconnectWiFi();
 void sendSensorValue(String sens_id, int sens_val);
