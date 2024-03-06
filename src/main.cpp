@@ -12,6 +12,8 @@ String web_service_protocal_ip_port = "http://192.168.74.251:3000";
 void reconnectWiFi();
 void sendSensorValue(String sens_id, int sens_val);
 
+long lastMsg = 0;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);  // initialize serial communication at 9600 bits per second
@@ -77,12 +79,16 @@ void loop() {
       reconnectWiFi();  
   }
 
+long now = millis();
+  if (now - lastMsg > 5000) {
+    lastMsg = now;
   // read the input on analog pin 0:
   int sensorValue = analogRead(A0); // read analog input pin 0
   sendSensorValue("LDR01", sensorValue);
   // Serial.print(sensorValue, DEC); // prints the value read
   // Serial.print(" \n"); // prints a space between the numbers
-  delay(1000); // wait 100ms for next reading
+  // delay(1000); // wait 100ms for next reading
+  }
 }
 
 void reconnectWiFi() {  
