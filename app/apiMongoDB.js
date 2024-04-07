@@ -4,6 +4,9 @@
 // Step 2: Install necessary dependencies
 // This step is also done in the terminal, not in the code
 
+// make http requests for Line Messaging API
+const axios = require('axios');
+
 // setup jwt
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
@@ -75,6 +78,43 @@ async function createUser(usr, pass) {
 
   return result;
 }
+
+// Line Massage send
+app.post('/line', async (req, res) => {
+  const { msg } = req.body;
+  const apiEndpoint = 'https://api.line.me/v2/bot/message/push';
+const bearerToken = 'Line Developer > Messaging API > Channel access token';
+
+// const data = message;
+
+const data = {
+    // Your data to be sent in the POST body
+    "to": "Line Developer > Basic Setting > Your user ID (for test)",
+    "messages":[
+        {
+            "type":"text",
+            "text":msg
+        }
+    ]
+};
+
+const config = {
+    headers: {
+        'Authorization': `Bearer ${bearerToken}`
+    }
+};
+
+axios.post(apiEndpoint, data, config)
+    .then(response => {
+        console.log("Success:", response.data);
+        return res.status(200).json({ message: 'Line msg success' });
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        return res.status(400).json({ message: 'Line msg error: '+error });
+    });
+});
+  
 
 // Example route for user signup
 app.post('/signup', async (req, res) => {

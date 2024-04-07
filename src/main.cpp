@@ -132,6 +132,31 @@ void sendSensorValue(String sens_id, int sens_val) {
   }
 }
 
+void sendLineMsg(String msg) {
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+    HTTPClient http;  //Declare an object of class HTTPClient
+
+    http.begin(web_service_protocal_ip_port + "/line");  //Specify request destination
+    http.addHeader("Content-Type", "application/json");  //Specify content-type header
+
+    // Prepare your JSON payload
+    DynamicJsonDocument doc(1024);
+    doc["msg"] = msg;
+    String payload;
+    serializeJson(doc, payload);
+
+    int httpCode = http.POST(payload);   //Send the request
+    String response = http.getString();  //Get the response payload
+
+    Serial.println(httpCode);   //Print HTTP return code
+    Serial.println(response);   //Print request response payload
+
+    http.end();  //Close connection
+  } else {
+    Serial.println("Error in WiFi connection");
+  }
+}
+
 // #include <Arduino.h>
 // #include <WiFi.h>  // Replace with your network library if using a different connection method
 // #include <PubSubClient.h>
