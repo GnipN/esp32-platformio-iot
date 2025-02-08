@@ -2,11 +2,15 @@
 #include <WiFi.h>  // Replace with your network library if using a different connection method
 #include <PubSubClient.h>
 
+// Note
+// 1. ต้องเปลี่ยน IP address ของ MQTT broker ให้ตรงกับ IP address ของ MQTT broker ที่เราใช้งาน
+// 2. ต้องเปลี่ยนชื่อของ WiFi และ password ให้ตรงกับ WiFi ที่เราใช้งาน
+// 3. ต้องเปลี่ยนชื่อของ topic ให้ตรงกับ topic ที่เราใช้งาน
+// 4. ต้องต่อสายไฟจาก GPIO 5 ไปที่ LED หรืออุปกรณ์ที่ต้องการควบคุม หรือเปลี่ยน GPIO ที่ต้องการควบคุม (หากไม่ต่อวงจรอาจทำให้ ESP32 รีเซ็ตเองเป็นระยะๆ)
 
-
-const char* ssid = "TP-Link_7F5C";//"virus";
-const char* password = "30177901";//"1234asdf";
-const char* mqtt_server = "192.168.1.102";
+const char* ssid = "ssid";
+const char* password = "password";
+const char* mqtt_server = "192.168.xxx.xxx"; // IP address of the MQTT broker
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
@@ -34,7 +38,8 @@ void setup() {
   mqtt.setServer(mqtt_server, 1883);
   mqtt.setCallback(callback);
 
-  pinMode(GPIO_NUM_9, OUTPUT);
+  // pinMode(GPIO_NUM_9, OUTPUT);
+  pinMode(5, OUTPUT);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -48,12 +53,14 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("] ");
   Serial.println(payLoadStr);
 
-  if( topicStr == "LED" ) {
+  if( topicStr == "home/livingroom/esp32/LED1" ) {
     lastLEDstatus = payLoadStr;
-    if (lastLEDstatus == "1") {
-      digitalWrite(GPIO_NUM_9, HIGH);
-    }else if (lastLEDstatus == "0"){
-      digitalWrite(GPIO_NUM_9, LOW);
+    if (lastLEDstatus == "status=on"){
+      // digitalWrite(GPIO_NUM_9, HIGH);
+      digitalWrite(5, HIGH);
+    }else if (lastLEDstatus == "status=off") {
+      // digitalWrite(GPIO_NUM_9, LOW);
+      digitalWrite(5, LOW);
     }
   }
   Serial.println();
@@ -66,8 +73,8 @@ void reconnect() {
     }else{
     if (mqtt.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
-      mqtt.subscribe("myTopic");
-      mqtt.subscribe("LED");
+      // subscribe to the topic "home/livingroom/esp32/LED1"
+      mqtt.subscribe("home/livingroom/esp32/LED1");
     } else {
       Serial.print("Failed to connect, rc=");
       Serial.print(mqtt.state());
@@ -91,7 +98,7 @@ void loop() {
   long now = millis();
   if (now - lastMsg > 5000) {
     lastMsg = now;
-    mqtt.publish("myTopic", "Hello from ESP32");
+    mqtt.publish("home/livingroom/esp32", "Hello from ESP32");
   }
 
   
@@ -119,8 +126,8 @@ void reconnectWiFi() {
 // #include <WiFi.h>
 
 // // put your WiFi credentials here
-// const char* ssid = "wifianme";
-// const char* password = "password";
+// const char* ssid = "TP-Link_7F5C";
+// const char* password = "30177901";
 
 // void reconnectWiFi();
 
@@ -168,7 +175,3 @@ void reconnectWiFi() {
 //   digitalWrite(LED_BUILTIN, HIGH);  
 //     Serial.println("Connected!");
 // }
-
-
-
-
