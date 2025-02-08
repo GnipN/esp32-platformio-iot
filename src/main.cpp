@@ -4,9 +4,9 @@
 
 
 
-const char* ssid = "virus";
-const char* password = "1234asdf";
-const char* mqtt_server = "192.168.74.251";
+const char* ssid = "TP-Link_7F5C";//"virus";
+const char* password = "30177901";//"1234asdf";
+const char* mqtt_server = "192.168.1.102";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
