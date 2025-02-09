@@ -3,9 +3,9 @@
 #include <PubSubClient.h>
 
 
-const char* ssid = "virus";
-const char* password = "1234asdf";
-const char* mqtt_server = "192.168.0.251";
+const char* ssid = "wifiname";
+const char* password = "password";
+const char* mqtt_server = "xxx.xxx.xxx.xxx";
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
