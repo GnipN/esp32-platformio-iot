@@ -247,3 +247,11 @@
 1704111415: Client mqttx_629d7a72 closed its connection.
 1704111421: mosquitto version 2.0.18 terminating
 1704111421: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1739074708: mosquitto version 2.0.20 starting
+1739074708: Config loaded from /mosquitto/config/mosquitto.conf.
+1739074708: Opening ipv4 listen socket on port 1883.
+1739074708: Opening ipv6 listen socket on port 1883.
+1739074708: Opening websockets listen socket on port 9001.
+1739074708: mosquitto version 2.0.20 running
+1739074714: New connection from 172.19.0.1:55956 on port 1883.
+1739074714: New client connected from 172.19.0.1:55956 as mqttx_c60472b4 (p5, c1, k60).

@@ -1,11 +1,28 @@
 #include <Arduino.h>
 #include <WiFi.h>
+#include <PubSubClient.h> // MQTT library
+
+// Note
+// 1. ต้องเปลี่ยน IP address ของ MQTT broker ให้ตรงกับ IP address ของ MQTT broker ที่เราใช้งาน
+// 2. ต้องเปลี่ยนชื่อของ WiFi และ password ให้ตรงกับ WiFi ที่เราใช้งาน
+// 3. ต้องเปลี่ยนชื่อของ topic ให้ตรงกับ topic ที่เราใช้งาน
+// 4. ต้องต่อสายไฟจาก GPIO 5 ไปที่ LED หรืออุปกรณ์ที่ต้องการควบคุม หรือเปลี่ยน GPIO ที่ต้องการควบคุม (หากไม่ต่อวงจรอาจทำให้ ESP32 รีเซ็ตเองเป็นระยะๆ)
 
 // put your WiFi credentials here
 const char* ssid = "wifiname";
 const char* password = "password";
+const char* mqtt_server = "xxx.xxx.xxx.xxx"; // IP address of the MQTT broker
 
+void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi();
+void reconnectMqtt();
+
+
+WiFiClient wifiClient; // create a WiFi client
+PubSubClient mqtt(wifiClient); // create a MQTT client
+
+long lastMsg = 0;
+String lastLEDstatus = "OFF";
 
 void setup() {
   // put your setup code here, to run once:
@@ -22,7 +39,66 @@ void setup() {
   // set LED to indicate successful connection
   digitalWrite(LED_BUILTIN, HIGH);
   Serial.println("Connected to WiFi");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
 
+  mqtt.setServer(mqtt_server, 1883);
+  mqtt.setCallback(callback);
+
+  // pinMode(GPIO_NUM_9, OUTPUT);
+  pinMode(5, OUTPUT);
+
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  String topicStr = String(topic); // Convert char* to String
+  String payLoadStr; // Convert byte* to String
+  for (int i = 0; i < length; i++) {
+    payLoadStr += (char)payload[i];
+  }
+  Serial.print("Message arrived [");
+  Serial.print(topicStr);
+  Serial.print("] ");
+  Serial.println(payLoadStr);
+
+  if( topicStr == "home/livingroom/LED1" ) {
+    lastLEDstatus = payLoadStr;
+    if (lastLEDstatus == "status=on"){
+      // digitalWrite(GPIO_NUM_9, HIGH);
+      digitalWrite(5, HIGH);
+    }else if (lastLEDstatus == "status=off") {
+      // digitalWrite(GPIO_NUM_9, LOW);
+      digitalWrite(5, LOW);
+    }
+  }
+  Serial.println();
+}
+
+void reconnectMqtt()
+{
+  while (!mqtt.connected())
+  {
+    if (WiFi.status() != WL_CONNECTED)
+    {
+      reconnectWiFi();
+    }
+    else
+    {
+      if (mqtt.connect("ESP32Client"))
+      {
+        Serial.println("Connected to MQTT broker");
+        // subscribe to the topic "home/livingroom/esp32/LED1"
+        mqtt.subscribe("home/livingroom/LED1");
+      }
+      else
+      {
+        Serial.print("Failed to connect, rc=");
+        Serial.print(mqtt.state());
+        Serial.println(" try again in 5 seconds");
+        delay(5000);
+      }
+    }
+  }
 }
 
 void loop() {
@@ -30,12 +106,27 @@ void loop() {
    if (WiFi.status() != WL_CONNECTED) {  
       reconnectWiFi();  
   }
+  // check if MQTT client is connected
+  if (!mqtt.connected()) {
+    reconnectMqtt();
+  }
+  mqtt.loop();
+
 
   // read the input on analog pin 0:
-  int sensorValue = analogRead(A0); // read analog input pin 0
+  int sensorValue = analogRead(36); // read analog input pin 0
   Serial.print(sensorValue, DEC); // prints the value read
   Serial.print(" \n"); // prints a space between the numbers
   delay(1000); // wait 100ms for next reading
+
+  long now = millis();
+  if ((now - lastMsg > 5000) && (sensorValue < 500)) {
+    lastMsg = now;
+    mqtt.publish("home/livingroom/LED1", "status=on");
+  }else if((now - lastMsg > 5000) && (sensorValue > 500)){
+    lastMsg = now;
+    mqtt.publish("home/livingroom/LED1", "status=off");
+  }
 }
 
 void reconnectWiFi() {  
