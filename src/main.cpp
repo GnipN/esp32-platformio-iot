@@ -8,9 +8,9 @@
 // 3. ต้องเปลี่ยนชื่อของ topic ให้ตรงกับ topic ที่เราใช้งาน
 // 4. ต้องต่อสายไฟจาก GPIO 5 ไปที่ LED หรืออุปกรณ์ที่ต้องการควบคุม หรือเปลี่ยน GPIO ที่ต้องการควบคุม (หากไม่ต่อวงจรอาจทำให้ ESP32 รีเซ็ตเองเป็นระยะๆ)
 
-const char* ssid = "ssid";
+const char* ssid = "wifiname";
 const char* password = "password";
-const char* mqtt_server = "192.168.xxx.xxx"; // IP address of the MQTT broker
+const char* mqtt_server = "xxx.xxx.xxx.xxx"; // IP address of the MQTT broker
 
 void callback(char* topic, byte* payload, unsigned int length);
 void reconnectWiFi() ;
@@ -38,8 +38,8 @@ void setup() {
   mqtt.setServer(mqtt_server, 1883);
   mqtt.setCallback(callback);
 
-  // pinMode(GPIO_NUM_9, OUTPUT);
-  pinMode(5, OUTPUT);
+  pinMode(GPIO_NUM_9, OUTPUT);
+  // pinMode(5, OUTPUT);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -56,11 +56,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   if( topicStr == "home/livingroom/LED1" ) {
     lastLEDstatus = payLoadStr;
     if (lastLEDstatus == "status=on"){
-      // digitalWrite(GPIO_NUM_9, HIGH);
-      digitalWrite(5, HIGH);
+      digitalWrite(GPIO_NUM_9, HIGH);
+      // digitalWrite(5, HIGH);
     }else if (lastLEDstatus == "status=off") {
-      // digitalWrite(GPIO_NUM_9, LOW);
-      digitalWrite(5, LOW);
+      digitalWrite(GPIO_NUM_9, LOW);
+      // digitalWrite(5, LOW);
     }
   }
   Serial.println();
@@ -73,7 +73,7 @@ void reconnect() {
     }else{
     if (mqtt.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
-      // subscribe to the topic "home/livingroom/esp32/LED1"
+      // subscribe to the topic "home/livingroom/LED1"
       mqtt.subscribe("home/livingroom/LED1");
     } else {
       Serial.print("Failed to connect, rc=");
@@ -85,24 +85,28 @@ void reconnect() {
   }
 }
 
-void loop() {
-   if (WiFi.status() != WL_CONNECTED) {  
-        reconnectWiFi();  
-    }else{
-  if (!mqtt.connected()) {
-    reconnect();
+void loop()
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    reconnectWiFi();
   }
-  mqtt.loop();
+  else
+  {
+    if (!mqtt.connected())
+    {
+      reconnect();
+    }
+    mqtt.loop();
 
-  // Publish a message every 5 seconds
-  long now = millis();
-  if (now - lastMsg > 5000) {
-    lastMsg = now;
-    mqtt.publish("home/livingroom/esp32", "Hello from ESP32");
+    // Publish a message every 5 seconds
+    long now = millis();
+    if (now - lastMsg > 5000)
+    {
+      lastMsg = now;
+      mqtt.publish("home/livingroom/esp32", "Hello from ESP32");
+    }
   }
-
-  
-}
 }
 
 //ถ้าไวไฟหลุด จะเรียกฟังก์ชันนี้ จนกว่าจะต่อใหม่ได้
