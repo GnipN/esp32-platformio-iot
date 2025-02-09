@@ -53,7 +53,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("] ");
   Serial.println(payLoadStr);
 
-  if( topicStr == "home/livingroom/esp32/LED1" ) {
+  if( topicStr == "home/livingroom/LED1" ) {
     lastLEDstatus = payLoadStr;
     if (lastLEDstatus == "status=on"){
       // digitalWrite(GPIO_NUM_9, HIGH);
@@ -74,7 +74,7 @@ void reconnect() {
     if (mqtt.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
       // subscribe to the topic "home/livingroom/esp32/LED1"
-      mqtt.subscribe("home/livingroom/esp32/LED1");
+      mqtt.subscribe("home/livingroom/LED1");
     } else {
       Serial.print("Failed to connect, rc=");
       Serial.print(mqtt.state());
