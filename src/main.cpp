@@ -23,6 +23,7 @@ PubSubClient mqtt(wifiClient); // create a MQTT client
 
 long lastMsg = 0;
 String lastLEDstatus = "OFF";
+String newLEDstatus = "OFF";
 
 void setup() {
   // put your setup code here, to run once:
@@ -45,8 +46,8 @@ void setup() {
   mqtt.setServer(mqtt_server, 1883);
   mqtt.setCallback(callback);
 
-  // pinMode(GPIO_NUM_9, OUTPUT);
-  pinMode(5, OUTPUT);
+  pinMode(GPIO_NUM_9, OUTPUT);
+  // pinMode(5, OUTPUT);
 
 }
 
@@ -62,13 +63,16 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(payLoadStr);
 
   if( topicStr == "home/livingroom/LED1" ) {
-    lastLEDstatus = payLoadStr;
-    if (lastLEDstatus == "status=on"){
-      // digitalWrite(GPIO_NUM_9, HIGH);
-      digitalWrite(5, HIGH);
-    }else if (lastLEDstatus == "status=off") {
-      // digitalWrite(GPIO_NUM_9, LOW);
-      digitalWrite(5, LOW);
+    newLEDstatus = payLoadStr;
+    if( newLEDstatus != lastLEDstatus ) {
+      if (newLEDstatus == "status=on") {
+        digitalWrite(GPIO_NUM_9, HIGH);
+        // digitalWrite(5, HIGH);
+      } else if (newLEDstatus == "status=off") {
+        digitalWrite(GPIO_NUM_9, LOW);
+        // digitalWrite(5, LOW);
+      }
+      lastLEDstatus = newLEDstatus;
     }
   }
   Serial.println();
@@ -87,7 +91,7 @@ void reconnectMqtt()
       if (mqtt.connect("ESP32Client"))
       {
         Serial.println("Connected to MQTT broker");
-        // subscribe to the topic "home/livingroom/esp32/LED1"
+        // subscribe to the topic "home/livingroom/LED1"
         mqtt.subscribe("home/livingroom/LED1");
       }
       else
@@ -114,16 +118,16 @@ void loop() {
 
 
   // read the input on analog pin 0:
-  int sensorValue = analogRead(36); // read analog input pin 0
+  int sensorValue = analogRead(A0); // read analog input pin 0
   Serial.print(sensorValue, DEC); // prints the value read
   Serial.print(" \n"); // prints a space between the numbers
   delay(1000); // wait 100ms for next reading
 
   long now = millis();
-  if ((now - lastMsg > 5000) && (sensorValue < 500)) {
+  if ((now - lastMsg > 5000) && (sensorValue < 2000)) {
     lastMsg = now;
     mqtt.publish("home/livingroom/LED1", "status=on");
-  }else if((now - lastMsg > 5000) && (sensorValue > 500)){
+  }else if((now - lastMsg > 5000) && (sensorValue > 2000)){
     lastMsg = now;
     mqtt.publish("home/livingroom/LED1", "status=off");
   }
