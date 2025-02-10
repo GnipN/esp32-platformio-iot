@@ -66,7 +66,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 }
 
-void reconnect() {
+void reconnectMQTTserver() {
   while (!mqtt.connected()) {
     if (WiFi.status() != WL_CONNECTED) {  
         reconnectWiFi();  
@@ -95,7 +95,7 @@ void loop()
   {
     if (!mqtt.connected())
     {
-      reconnect();
+      reconnectMQTTserver();
     }
     mqtt.loop();
 
