@@ -22,6 +22,7 @@ WiFiClient wifiClient; // create a WiFi client
 PubSubClient mqtt(wifiClient); // create a MQTT client
 
 long lastMsg = 0;
+long lastSendSensorValue = 0;
 String lastLEDstatus = "OFF";
 String newLEDstatus = "OFF";
 
@@ -130,6 +131,13 @@ void loop() {
   }else if((now - lastMsg > 5000) && (sensorValue > 2000)){
     lastMsg = now;
     mqtt.publish("home/livingroom/LED1", "status=off");
+  }
+
+  // send sensor value to MQTT broker every 5 seconds
+  if (now - lastSendSensorValue > 5000) {
+    lastSendSensorValue = now;
+    String sensorValueStr = "{\"LDR\":" + String(sensorValue)+ "}"; // --> {"LDR":1205}
+    mqtt.publish("sensors/LDR", String(sensorValueStr).c_str());
   }
 }
 
