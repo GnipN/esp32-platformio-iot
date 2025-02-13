@@ -137,7 +137,8 @@ void loop() {
   if (now - lastSendSensorValue > 5000) {
     lastSendSensorValue = now;
     String sensorValueStr = "{\"LDR\":" + String(sensorValue)+ "}"; // --> {"LDR":1205}
-    mqtt.publish("sensors/LDR", String(sensorValueStr).c_str());
+    String sensorValueStr2 = "{\"LDR\":" + String(sensorValue)+ ",\"temp\":" + String(sensorValue+200) + "}"; // --> {"LDR":1205,"temp":1405}
+    mqtt.publish("sensors_values", String(sensorValueStr2).c_str());
   }
 }
 
