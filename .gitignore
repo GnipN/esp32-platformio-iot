@@ -3,6 +3,12 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-mosquitto/data/
+.vscode/extensions.json
+mosquitto/data/mosquitto.db
 mosquitto/mosquitto.log
-influxdb/
+influxdb/.cache/
+influxdb/data/
+influxdb/meta/
+influxdb/wal/
+rest-api/node_modules/
+rest-api/package-lock.json
