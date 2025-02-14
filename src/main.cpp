@@ -7,6 +7,7 @@
 // 2. ต้องเปลี่ยนชื่อของ WiFi และ password ให้ตรงกับ WiFi ที่เราใช้งาน
 // 3. ต้องเปลี่ยนชื่อของ topic ให้ตรงกับ topic ที่เราใช้งาน
 // 4. ต้องต่อสายไฟจาก GPIO 5 ไปที่ LED หรืออุปกรณ์ที่ต้องการควบคุม หรือเปลี่ยน GPIO ที่ต้องการควบคุม (หากไม่ต่อวงจรอาจทำให้ ESP32 รีเซ็ตเองเป็นระยะๆ)
+// 5. wifi support only 2.4 GHz
 
 // put your WiFi credentials here
 const char* ssid = "wifiname";
@@ -125,13 +126,13 @@ void loop() {
   delay(1000); // wait 100ms for next reading
 
   long now = millis();
-  if ((now - lastMsg > 5000) && (sensorValue < 2000)) {
-    lastMsg = now;
-    mqtt.publish("home/livingroom/LED1", "status=on");
-  }else if((now - lastMsg > 5000) && (sensorValue > 2000)){
-    lastMsg = now;
-    mqtt.publish("home/livingroom/LED1", "status=off");
-  }
+  // if ((now - lastMsg > 5000) && (sensorValue < 2000)) {
+  //   lastMsg = now;
+  //   mqtt.publish("home/livingroom/LED1", "status=on");
+  // }else if((now - lastMsg > 5000) && (sensorValue > 2000)){
+  //   lastMsg = now;
+  //   mqtt.publish("home/livingroom/LED1", "status=off");
+  // }
 
   // send sensor value to MQTT broker every 5 seconds
   if (now - lastSendSensorValue > 5000) {
