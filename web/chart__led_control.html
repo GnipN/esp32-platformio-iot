@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แทรก Iframe</title>
+</head>
+<body>
+
+    <h2>ตัวอย่างการใช้ Iframe</h2>
+
+    <!-- แสดงหน้าเว็บอื่น -->
+    <iframe src="http://localhost:3000/public-dashboards/66b33903dd7c443bbeefe9828304be11" width="800" height="600" style="border:1px solid black;"></iframe>
+
+    <!-- Form to send JSON data to /mqttpub -->
+    <h3>MQTT publish</h3>
+    <form id="mqttForm">
+        <label for="topic">Topic:</label>
+        <input type="text" id="topic" name="topic" value="home/livingroom/LED1" required><br><br>
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" value="status=off" required><br><br>
+        <button type="submit">publish</button>
+    </form>
+
+    <p> ----------------------------------- </p>
+    <!-- New button to send a specific JSON payload -->
+    <h3>Control LED</h3>
+    <button id="turnOnLED_BT">Turn On LED</button> <button id="turnOffLED_BT">Turn Off LED</button>
+
+    <!-- Div to show response -->
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('mqttForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const topic = document.getElementById('topic').value;
+            const message = document.getElementById('message').value;
+
+            fetch('http://localhost:3001/mqttpub', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ topic, message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // alert('Message published successfully');
+                document.getElementById('response').innerText = "response:\n"+JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to publish message');
+            });
+        });
+
+        // trun on LED
+        document.getElementById('turnOnLED_BT').addEventListener('click', function() {
+            const topic = "home/livingroom/LED1";
+            const message = "status=on";
+
+            fetch('http://localhost:3001/mqttpub', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ topic, message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('response').innerText = "response:\n"+JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to publish message');
+            });
+        });
+
+        // trun off LED
+        document.getElementById('turnOffLED_BT').addEventListener('click', function() {
+            const topic = "home/livingroom/LED1";
+            const message = "status=off";
+
+            fetch('http://localhost:3001/mqttpub', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ topic, message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('response').innerText = "response:\n"+JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to publish message');
+            });
+        });
+    </script>
+
+    <!-- แสดงวิดีโอจาก YouTube -->
+    <h3>วิดีโอจาก YouTube</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+
+    <!-- แสดงแผนที่จาก Google Maps -->
+    <h3>แผนที่จาก Google Maps</h3>
+    <iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.774841239165!2d100.52318651525096!3d13.736717501360125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2995d7b2b2b2b%3A0x2d8e1b7b5b5b5b5b!2sBangkok!5e0!3m2!1sth!2sth!4v1633085570076!5m2!1sth!2sth">
+    </iframe>
+
+</body>
+</html>
