@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แทรก Iframe</title>
+    <title>REST API</title>
 </head>
 <body>
 
-    <h2>ตัวอย่างการใช้ Iframe</h2>
-
-    <!-- แสดงหน้าเว็บอื่น -->
-    <iframe src="http://localhost:3000/public-dashboards/66b33903dd7c443bbeefe9828304be11" width="800" height="600" style="border:1px solid black;"></iframe>
-
     <!-- Form to send JSON data to /mqttpub -->
-    <h3>MQTT publish</h3>
+    <h3>MQTT publish HTML form</h3>
     <form id="mqttForm">
         <label for="topic">Topic:</label>
         <input type="text" id="topic" name="topic" value="home/livingroom/LED1" required><br><br>
@@ -24,11 +19,13 @@
 
     <p> ----------------------------------- </p>
     <!-- New button to send a specific JSON payload -->
-    <h3>Control LED</h3>
+    <h3>Control LED by Buttons</h3>
     <button id="turnOnLED_BT">Turn On LED</button> <button id="turnOffLED_BT">Turn Off LED</button>
 
     <!-- Div to show response -->
     <div id="response"></div>
+
+    <p> ----------------------------------- </p>
 
     <script>
         document.getElementById('mqttForm').addEventListener('submit', function(event) {
@@ -114,6 +111,11 @@
             });
         });
     </script>
+
+    <h2>ตัวอย่างการใช้ Iframe</h2>
+
+    <!-- แสดงหน้าเว็บอื่น -->
+    <iframe src="http://localhost:3000/public-dashboards/66b33903dd7c443bbeefe9828304be11" width="800" height="600" style="border:1px solid black;"></iframe>
 
     <!-- แสดงวิดีโอจาก YouTube -->
     <h3>วิดีโอจาก YouTube</h3>
