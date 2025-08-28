@@ -9,7 +9,7 @@
 // 4. ต้องต่อสายไฟจาก GPIO 5 ไปที่ LED หรืออุปกรณ์ที่ต้องการควบคุม หรือเปลี่ยน GPIO ที่ต้องการควบคุม (หากไม่ต่อวงจรอาจทำให้ ESP32 รีเซ็ตเองเป็นระยะๆ)
 
 // put your WiFi credentials here
-const char* ssid = "wifiname";
+const char* ssid = "wifiName";
 const char* password = "password";
 const char* mqtt_server = "xxx.xxx.xxx.xxx"; // IP address of the MQTT broker
 
@@ -46,7 +46,7 @@ void setup() {
   mqtt.setServer(mqtt_server, 1883);
   mqtt.setCallback(callback);
 
-  pinMode(GPIO_NUM_9, OUTPUT);
+  pinMode(GPIO_NUM_13, OUTPUT);
   // pinMode(5, OUTPUT);
 
 }
@@ -66,10 +66,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
     newLEDstatus = payLoadStr;
     if( newLEDstatus != lastLEDstatus ) {
       if (newLEDstatus == "status=on") {
-        digitalWrite(GPIO_NUM_9, HIGH);
+        digitalWrite(GPIO_NUM_13, HIGH);
         // digitalWrite(5, HIGH);
       } else if (newLEDstatus == "status=off") {
-        digitalWrite(GPIO_NUM_9, LOW);
+        digitalWrite(GPIO_NUM_13, LOW);
         // digitalWrite(5, LOW);
       }
       lastLEDstatus = newLEDstatus;
@@ -118,7 +118,7 @@ void loop() {
 
 
   // read the input on analog pin 0:
-  int sensorValue = analogRead(A0); // read analog input pin 0
+  int sensorValue = analogRead(GPIO_NUM_34); // read analog input pin 34
   Serial.print(sensorValue, DEC); // prints the value read
   Serial.print(" \n"); // prints a space between the numbers
   delay(1000); // wait 100ms for next reading
